@@ -2,7 +2,10 @@ import tkinter as tk
 
 usuario_logado = None
 
-banco_de_dados = {}
+banco_de_dados = {
+    "admin": {"senha": "admin123", "cargo": "administrador"},
+    "jogador1": {"senha": "jogador123", "cargo": "jogador"}
+}
 
 def limpar_janela():     
     elementos = app.winfo_children()
@@ -17,10 +20,25 @@ def criar_botao_limpar(tela_atual):
         botao_retornar_menu.pack(pady=50)
 
 def validar_login ():
-    entrada_usuario.get()
-    entrada_senha.get()
+    global usuario_logado
 
+    user_digitado = entrada_usuario.get()
+    senha_digitada = entrada_senha.get()
+
+    if user_digitado in banco_de_dados:
+        senha_verdadeira = banco_de_dados[user_digitado]["senha"]
+
+        if senha_digitada == senha_verdadeira:
+            usuario_logado = user_digitado
+            abrir_menu()
+        else:
+            print("Senha incorreta!")
+    else:
+        print("Usuário não encontrado!")
+    
 def tela_login ():
+    global entrada_usuario, entrada_senha
+
     limpar_janela()
     
     label01 = tk.Label(app, text="Bem-Vindo ao E-Sports Camp")
@@ -29,18 +47,18 @@ def tela_login ():
     label02 = tk.Label(app, text="Nome de Usuário: ")
     label02.pack()
     
-    global entrada_usuario = tk.Entry(app)
+    entrada_usuario = tk.Entry(app)
     entrada_usuario.pack(pady=50)
     
     
     label03 = tk.Label(app, text="Insira a Senha: ")
     label03.pack()
-    global entrada_senha = tk.Entry(app, show="*")
+    entrada_senha = tk.Entry(app, show="*")
     entrada_senha.pack(pady=50)
     
     botao_entrada = tk.Button(app, text="Entrar")
     botao_entrada.pack(pady=50)
-      criar_botao_limpar("TelaLogin") # Apenas teste.
+
 
 def abrir_menu():
     limpar_janela()
