@@ -105,6 +105,14 @@ def acessar_cadastro():
     
     criar_botao_limpar("acessarcadastro")
 
+def acessar_participantes():
+    limpar_janela()
+
+    label = tk.Label(app, text="PARTICIPANTES")
+    label.pack(pady=25)
+
+    criar_botao_limpar("participantes")
+    
 app = tk.Tk()
 app.title("E-SPORTS CAMP")
 
