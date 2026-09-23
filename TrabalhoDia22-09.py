@@ -62,21 +62,30 @@ def tela_login ():
 
 def abrir_menu():
     limpar_janela()
-   
-    text_01 = tk.Label(app, text="MENU DE SELEÇÃO")
-    text_01.pack(pady=25)
+    cargo_usuario = banco_de_dados[usuario_logado]["cargo"]
+
+    if cargo_usuario == "administrador":
+        
     
-    # Botão para cadastros
-    botao_cadastrar = tk.Button(app, text="Cadastrar", command=janela_cadastrar)
-    botao_cadastrar.pack(pady=25)
+        text_01 = tk.Label(app, text="MENU DE SELEÇÃO - ADMINISTRADOR")
+        text_01.pack(pady=25)
     
-    # Botão para acessar um cadastro.
-    botao_acessarcadastro = tk.Button(app, text="Acessar Cadastro", command=acessar_cadastro)
-    botao_acessarcadastro.pack(pady=25)
+        # Botão para cadastros
+        botao_cadastrar = tk.Button(app, text="Cadastrar", command=janela_cadastrar)
+        botao_cadastrar.pack(pady=25)
     
-    # Botão para acessar lista de participantes.
-    botao_participantes = tk.Button(app, text="Acessar Participantes")
-    botao_participantes.pack(pady=25)
+        # Botão para acessar um cadastro.
+        botao_acessarcadastro = tk.Button(app, text="Acessar Cadastro", command=acessar_cadastro)
+        botao_acessarcadastro.pack(pady=25)
+        
+        # Botão para acessar lista de participantes.
+        botao_participantes = tk.Button(app, text="Acessar Participantes")
+        botao_participantes.pack(pady=25)
+
+    else:
+        text_01 = tk.Label(app, text="MENU DE SELEÇÃO")
+        text_01.pack(pady=25)
+    
 
     criar_botao_limpar("menu")
 
