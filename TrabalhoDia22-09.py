@@ -56,7 +56,7 @@ def tela_login ():
     entrada_senha = tk.Entry(app, show="*")
     entrada_senha.pack(pady=50)
     
-    botao_entrada = tk.Button(app, text="Entrar")
+    botao_entrada = tk.Button(app, text="Entrar", command=validar_login)
     botao_entrada.pack(pady=50)
 
 
